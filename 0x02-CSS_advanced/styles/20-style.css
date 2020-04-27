@@ -179,7 +179,7 @@ ul.row {
     padding: 0.5rem;
 }
 
-.row:after {
+.row::after {
     content: none;
     display: table;
     clear: both;
