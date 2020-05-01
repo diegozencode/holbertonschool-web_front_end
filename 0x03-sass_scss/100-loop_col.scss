@@ -1,7 +1,7 @@
 /* loop columns and operators */
 
 @for $i from 1 through 4 {
-    .col-h#{$i} {
+    .col-#{$i} {
         width: #{100% * 1 / $i};
     }
 }
