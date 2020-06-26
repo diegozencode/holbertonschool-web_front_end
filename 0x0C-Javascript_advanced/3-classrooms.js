@@ -9,9 +9,13 @@ function createClassRoom(numberOfStudents)
     }
     let students = [];
     for (let i = 0; i < numberOfStudents; i++) {
-        students.fill(studentSeat(i + 1));
+        students[i] = studentSeat(i + 1);
         // number of iteration + 1 -> studentSeat -> add return value to students array 
     }
     return students;
 }
-let classRoom = createClassRoom(10);
+let classRoom = createClassRoom(10); // closure
+
+console.log(classRoom[0]());
+console.log(classRoom[3]());
+console.log(classRoom[9]());
