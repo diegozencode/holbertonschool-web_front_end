@@ -9,4 +9,4 @@ for (let i = 0; i < 100; i++) {
 let endTime = performance.now();
 let finalTime = (endTime - startTime);
 
-console.log('Execution time of calculating prime numbers 100 times was ' + finalTime + ' milliseconds.');
+console.log('Execution time of printing countPrimeNumbers was ' + finalTime + ' milliseconds');
