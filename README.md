@@ -33,7 +33,7 @@
 * NoSQL
 * Queuing Systems
 * Intermediate TypeScripting
-* Building Portfolio Porjects
+* Building Portfolio Projects
 
 ## React
 * Continued Advancement of HTML/CSS
