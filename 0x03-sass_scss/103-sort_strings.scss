@@ -1,0 +1,30 @@
+/* Sorts a variable and prints a sorted list of numbers */
+
+@import '103-sort_list.scss';
+
+@function list-remove($list, $index) {
+    $new_list: ();
+    @for $i from 1 through length($list) {
+        @if $i != $index {
+            $new_list: append($new_list, nth($list, $i), 'space');
+        }
+    }
+    @return $new_list;
+}
+
+@function sort($list) {
+    $sorted_list: ();
+    @while length($list) > 0 {
+        $val: nth($list, 1);
+        @each $name in $list {
+            @if $name < $val {
+                $val: $name;
+            }
+        }
+        $sorted_list: append($sorted_list , $val , 'space');
+        $list: list-remove($list, index($list, $val));
+    }
+    @return $sorted_list;
+}
+
+@debug sort($list_to_sort);
