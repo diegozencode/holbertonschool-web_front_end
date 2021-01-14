@@ -59,4 +59,4 @@ Read or watch:
 ---
 
 ## Author
-* **Diego Monroy** - [diegozencode](https://github.com/diegozencode)
+* **Diego Monroy** - [diegozencode](https://github.com/diegozencode) - [twitter](https://twitter.com/diegozencode)
