@@ -59,4 +59,4 @@ Read or watch:
 ---
 
 ## Author
-* **Diego Monroy** - [diegozencode](https://github.com/diegozencode) - [twitter](https://twitter.com/diegozencode) :speech_ballon:
+* **Diego Monroy** - [diegozencode](https://github.com/diegozencode) - [twitter:speech_ballon:](https://twitter.com/diegozencode)
