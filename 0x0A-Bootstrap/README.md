@@ -1,7 +1,7 @@
 # 0x0A. Bootstrap
 
-## Description
-What you should learn from this project:
+## Description:bulb:
+Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS and JavaScript design templates for typography, forms, buttons, navigation, and other interface components
 
 * Usage of Containers
 * Usage of the Grid system
@@ -10,34 +10,27 @@ What you should learn from this project:
 
 ---
 
-### [0. Reboot styling](./0-index.html)
-* From this HTML:
+## Resources:books:
+Read or watch:
+* [Bootstrap] (https://getbootstrap.com)
 
+---
+
+### [0. Reboot styling](./0-index.html)
 
 ### [1. Blocks](./1-index.html)
-* From this HTML:
-
 
 ### [2. Table of chemical elements](./2-index.html)
-* From this HTML:
-
 
 ### [3. Cards](./3-index.html)
-* From this HTML:
-
 
 ### [4. Bob Dylan](./4-index.html)
-* From this HTML:
-
 
 ### [5. Show/Hide - screen size](./5-index.html)
-* From this HTML:
-
 
 ### [6. Overwrite CSS](./6-styles.css)
-* With this HTML: (one Bootstrap template example)
 
 ---
 
 ## Author
-* **Diego Monroy** - [diegozencode](https://github.com/diegozencode)
+* **Diego Monroy** - [diegozencode](https://github.com/diegozencode) - [twitter:speech_balloon:](https://twitter.com/diegozencode)
