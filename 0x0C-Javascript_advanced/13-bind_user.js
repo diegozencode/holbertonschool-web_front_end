@@ -4,6 +4,7 @@ let user = {
     astrologicalSign: 'Aries',
     firstName: 'Buillaume',
     lastName: 'Ialva',
+    location: 'Telaviv',
     occupation: 'Engineer'
 };
 
