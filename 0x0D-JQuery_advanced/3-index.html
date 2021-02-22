@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 0</title>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-    <head>
-
-        <meta charset="utf-8" />
-        <title>Task 0</title>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        
-    </head>
-
-    <body>
-        <script type="application/javascript">
-            $(function(){
-                function createFamilyTree()
-                {
-                    $("body").append("<table>");
-                    $("table").append("<thead>");
-                    $("table").append("<tbody>");
-                    $("thead").append("<th>, <th>");
-                    $("th:nth-child(1)").text("Firstname");
-                    $("th:nth-child(2)").text("Lastname");
-                    $("tbody").append("<tr>, <tr>, <tr>");
-                    $("tr:nth-child(1)").append("<td>, <td>");
-                    $("tr:nth-child(1) > td:nth-child(1)").text("Guillaume");
-                    $("tr:nth-child(1) > td:nth-child(2)").text("Salva");
-                    $("tr:nth-child(2)").append("<td>, <td>");
-                    $("tr:nth-child(2) > td:nth-child(1)").text("Paulette");
-                    $("tr:nth-child(2) > td:nth-child(2)").text("Salva");
-                    $("tr:nth-child(3)").append("<td>, <td>");
-                    $("tr:nth-child(3) > td:nth-child(1)").text("Antoine");
-                    $("tr:nth-child(3) > td:nth-child(2)").text("Salva");
-                }
-                createFamilyTree();
-            });
-        </script>
-    </body>
-
+  <body>
+    <script type="application/javascript">
+      $(function () {
+        function createFamilyTree() {
+          $("body").append("<table>");
+          $("table").append("<thead>");
+          $("table").append("<tbody>");
+          $("thead").append("<th>, <th>");
+          $("th:nth-child(1)").text("Firstname");
+          $("th:nth-child(2)").text("Lastname");
+          $("tbody").append("<tr>, <tr>, <tr>");
+          $("tr:nth-child(1)").append("<td>, <td>");
+          $("tr:nth-child(1) > td:nth-child(1)").text("Guillaume");
+          $("tr:nth-child(1) > td:nth-child(2)").text("Salva");
+          $("tr:nth-child(2)").append("<td>, <td>");
+          $("tr:nth-child(2) > td:nth-child(1)").text("Paulette");
+          $("tr:nth-child(2) > td:nth-child(2)").text("Salva");
+          $("tr:nth-child(3)").append("<td>, <td>");
+          $("tr:nth-child(3) > td:nth-child(1)").text("Antoine");
+          $("tr:nth-child(3) > td:nth-child(2)").text("Salva");
+        }
+        createFamilyTree();
+      });
+    </script>
+  </body>
 </html>
