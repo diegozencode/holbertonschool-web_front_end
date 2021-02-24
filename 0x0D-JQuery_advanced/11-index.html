@@ -14,58 +14,70 @@
     <script type="application/javascript">
       // Shorthand for document ready event
       $(function () {
-        function createSearchForm() {
-          $("body").append("<input type=text>");
-          $("body").append("<input type=submit value=Submit>");
+        function buildForm() {
+          $("body").append("<form>");
+          $("form").append(
+            "<div><label for=author>Author</label><input type=text id=author></div>"
+          );
+          $("form").append(
+            "<div><label for=title>Title</label><textarea id=title></textarea></div>"
+          );
+          $("form").append("<input type=submit value=Submit>");
           $("input[type=submit]").click(function () {
-            queryWikipedia($("input").first().val());
+            sendForm();
           });
-          $("body").append("<ul>");
         }
+
+        function sendForm() {
+          $("form").after("<p>About to send the query to the API</p>");
+          data = {
+            title: $("#title").val(),
+            author: $("#author").val(),
+          };
+
+          $.post("http://localhost:3000/posts", data)
+            .done(function (comebackData) {
+              addPostRow(comebackData);
+            })
+            .fail(function (xhr, status, errorThrown) {
+              alert("Error sending the POST query");
+            });
+        }
+
         /**
-         * @param {string} id
-         * @param {string} title
-         * @param {string} snippet
+         * @param {object} data
          */
-        function addNewArticle(id, title, snippet) {
-          $("ul").append(
-            "<li><p>" +
-              id +
-              " - <strong>" +
-              title +
-              "</strong></p><p>" +
-              snippet +
-              "</p></li>"
+        function addPostRow(data) {
+          $("body").append(
+            "<p><span>Post created with id " +
+              data.id +
+              ", title: " +
+              data.title +
+              ", author: " +
+              data.author +
+              "</span></p>"
           );
         }
 
-        function queryWikipedia(search) {
-          let url = "https://en.wikipedia.org/w/api.php";
-
-          let params = {
-            action: "query",
-            list: "search",
-            srsearch: search,
-            format: "json",
-          };
-
-          url = url + "?origin=*";
-          Object.keys(params).forEach(function (key) {
-            url += "&" + key + "=" + params[key];
-          });
-
-          $.ajax({
-            url: url,
-          }).then(function (data) {
-            // console.log(data.query.search);
-            data.query.search.forEach((element) => {
-              addNewArticle(element.pageid, element.title, element.snippet);
-              console.log(element);
+        function listPosts() {
+          // Using the core $.ajax() method
+          $.get("http://localhost:3000/posts")
+            // Code to run if the request succeeds (is done);
+            // The response is passed to the function
+            .done(function (json) {
+              json.forEach((element) => {
+                addPostRow(element);
+              });
+            })
+            // Code to run if the request fails; the raw request and
+            // status codes are passed to the function
+            .fail(function (xhr, status, errorThrown) {
+              alert("Server Error");
             });
-          });
         }
 
-        createSearchForm();
+        listPosts();
+        buildForm();
       });
     </script>
   </body>
