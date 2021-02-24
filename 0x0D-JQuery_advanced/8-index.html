@@ -40,7 +40,7 @@
           );
         }
 
-        function queryWikipedia(search, offset=0) {
+        function queryWikipedia(search, offset = 0) {
           let url = "https://en.wikipedia.org/w/api.php";
 
           let params = {
@@ -78,9 +78,13 @@
           $("ul:last").replaceWith("<ul id=pagination style=decoration:none>");
           let pag = Math.floor(numberOfItems / itemsPerPage);
           for (let i = 1; i <= pag; i++) {
-            $("#pagination").append("<li style=cursor:pointer;margin-left:10px;display:inline>" + i +"</li>");
+            $("#pagination").append(
+              "<li style=cursor:pointer;margin-left:10px;display:inline>" +
+                i +
+                "</li>"
+            );
           }
-          $("ul#pagination li").click(function() {
+          $("ul#pagination li").click(function () {
             let search = $("input").first().val();
             let offset = $(this).text();
             $("ul:first").replaceWith("<ul>");
