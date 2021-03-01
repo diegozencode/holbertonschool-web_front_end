@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookies</title>
+  </head>
+  <body>
+    <div id="form">
+      <h2>Login to the webside</h2>
+      <input type="text" id="firstname" />
+      <input type="text" id="email" />
+      <!-- Call the function setCookies -->
+      <button onclick="setCookies();">Log me in</button>
+    </div>
+    <script>
+      function setCookies() {
+        // get input values
+        let name = document.getElementById("firstname").value;
+        let email = document.getElementById("email").value;
+        // set expiration time to 10 days
+        let date = new Date();
+        date.setTime(date.getTime() + 10 * 24 * 60 * 60 * 1000);
+        let expires = "expires=" + date.toUTCString();
+        // set cookie values
+        document.cookie = "firstname=" + name;
+        document.cookie = "email=" + email;
+        document.cookie = expires;
+        document.cookie = "path=/";
+
+        showWelcomeMessageOrForm();
+      }
+
+      function showCookies() {
+        // Create DOM p element
+        const paragraph = document.createElement("p");
+        // get cookie by name calling getCookie
+        let firstname = getCookie("firstname");
+        let email = getCookie("email");
+        // set the the cookies
+        paragraph.innerHTML =
+          "Email: " + email + " - " + "Firstname: " + firstname;
+        // append the p at the bottom of the page
+        document.body.appendChild(paragraph);
+      }
+
+      function getCookie(name) {
+        // return the value of the name cookie, if not exist return empty string
+        // search for name cookie + =
+        let search = name + "=";
+        // decode cookie to handle special characters
+        let decodeCookie = decodeURIComponent(document.cookie);
+        // split cookie on semicolons into an array
+        let cookieArray = decodeCookie.split(";");
+        for (let i = 0; i < cookieArray.length; i++) {
+          let element = cookieArray[i];
+          while (element.charAt(0) == " ") {
+            element = element.substring(1);
+          }
+          if (element.indexOf(search) == 0) {
+            return element.substring(search.length, element.length);
+          }
+        }
+        return "";
+      }
+
+      function showForm() {
+        // removes the welcome message
+        msg = document.querySelector("h1:last-child");
+        if (msg != undefined) {
+          document.getElementById("form").style.display = "block";
+          msg.style.display = "none";
+        }
+      }
+
+      function hideForm() {
+        // hide the form
+        document.getElementById("form").style.display = "none";
+      }
+
+      function deleteCookiesAndShowForm() {
+        // remove the two cookies
+        document.cookie =
+          "firstname=; email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        // show the form showForm()
+        showForm();
+      }
+
+      function showWelcomeMessageOrForm() {
+        // show form if user not logged in
+        // replace the body if user is logged in
+        let firstname = getCookie("firstname");
+        if (firstname == "") {
+          showForm();
+        } else {
+          let h1 = document.createElement("h1");
+          let a = document.createElement("a");
+          let link = document.createTextNode("(logout)");
+          // add style to link
+          a.style.cssText =
+            "font-weight:normal;font-style:italic;padding-left:10px;";
+          // add onclick function
+          a.addEventListener(
+            "click",
+            function (e) {
+              deleteCookiesAndShowForm();
+            },
+            false
+          );
+          a.appendChild(link);
+          h1.style.display = "block";
+          h1.innerHTML = "Welcome: " + getCookie("firstname");
+          h1.appendChild(a);
+          document.body.appendChild(h1);
+          hideForm();
+        }
+      }
+    </script>
+  </body>
+</html>
