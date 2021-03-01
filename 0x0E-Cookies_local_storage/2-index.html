@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookies</title>
+  </head>
+  <body>
+    <h1>Login to the webside</h1>
+    <input type="text" id="firstname" />
+    <input type="text" id="email" />
+    <!-- Call the function setCookies -->
+    <button onclick="setCookies();">Log me in</button>
+    <h2>Cookies</h2>
+    <!-- Call the function show cookies -->
+    <button onclick="showCookies();">Show the cookies</button>
+    <script>
+      function setCookies() {
+        // get input values
+        let name = document.getElementById("firstname").value;
+        let email = document.getElementById("email").value;
+        // set expiration time to 10 days
+        let date = new Date();
+        date.setTime(date.getTime() + 10 * 24 * 60 * 60 * 1000);
+        let expires = "expires=" + date.toUTCString();
+        // set cookie values
+        document.cookie = "firstname=" + name;
+        document.cookie = "email=" + email;
+        document.cookie = expires;
+        document.cookie = "path=/";
+      }
+
+      function showCookies() {
+        // Create DOM p element
+        const paragraph = document.createElement("p");
+        // get cookie by name calling getCookie
+        let firstname = getCookie("firstname");
+        let email = getCookie("email");
+        // set the the cookies
+        paragraph.innerHTML =
+          "Email: " + email + " - " + "Firstname: " + firstname;
+        // append the p at the bottom of the page
+        document.body.appendChild(paragraph);
+      }
+
+      function getCookie(name) {
+        // return the value of the name cookie, if not exist return empty string
+        // search for name cookie + =
+        let search = name + "=";
+        // decode cookie to handle special characters
+        let decodeCookie = decodeURIComponent(document.cookie);
+        // split cookie on semicolons into an array
+        let cookieArray = decodeCookie.split(";");
+        for (let i = 0; i < cookieArray.length; i++) {
+          let element = cookieArray[i];
+          while (element.charAt(0) == " ") {
+            element = element.substring(1);
+          }
+          if (element.indexOf(search) == 0) {
+            return element.substring(search.length, element.length);
+          }
+        }
+        return "";
+      }
+    </script>
+  </body>
+</html>
