@@ -6,3 +6,5 @@
 [abcdefghijk]
 # Ignore scss cache
 *.scssc
+# ignore node modules
+node_modules/
