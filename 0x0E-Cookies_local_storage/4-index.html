@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookies</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+  </head>
+  <body>
+    <div id="form">
+      <h2>Login to the webside</h2>
+      <input type="text" id="firstname" />
+      <input type="text" id="email" />
+      <!-- Call the function setCookies -->
+      <button onclick="setCookiesAndShowWelcomeMessage();">Log me in</button>
+    </div>
+    <script>
+      function setCookiesAndShowWelcomeMessage() {
+        // get input values
+        let name = document.getElementById("firstname").value;
+        let email = document.getElementById("email").value;
+        // set cookie values
+        Cookies.set("firstname", name, "email", email, {
+          expires: 10,
+          path: "",
+        });
+        showWelcomeMessageOrForm();
+      }
+
+      function showCookies() {
+        // Create DOM p element
+        const paragraph = document.createElement("p");
+        // get cookie by name calling getCookie
+        let firstname = Cookies.get("firstname");
+        let email = Cookies.get("email");
+        // set the the cookies
+        paragraph.innerHTML =
+          "Email: " + email + " - " + "Firstname: " + firstname;
+        // append the p at the bottom of the page
+        document.body.appendChild(paragraph);
+      }
+
+      function showForm() {
+        // removes the welcome message
+        msg = document.querySelector("h1:last-child");
+        if (msg != undefined) {
+          document.getElementById("form").style.display = "block";
+          msg.style.display = "none";
+        }
+      }
+
+      function hideForm() {
+        // hide the form
+        document.getElementById("form").style.display = "none";
+      }
+
+      function deleteCookiesAndShowForm() {
+        // remove the two cookies
+        Cookies.remove("firstname", { path: "" });
+        Cookies.remove("email", { path: "" });
+        // show the form showForm()
+        showForm();
+      }
+
+      function showWelcomeMessageOrForm() {
+        // show form if user not logged in
+        // replace the body if user is logged in
+        let firstname = Cookies.get("firstname");
+        if (firstname == "") {
+          showForm();
+        } else {
+          let h1 = document.createElement("h1");
+          let a = document.createElement("a");
+          let link = document.createTextNode("(logout)");
+          // add style to link
+          a.style.cssText =
+            "font-weight:normal;font-style:italic;padding-left:10px;";
+          // add onclick function
+          a.addEventListener(
+            "click",
+            function (e) {
+              deleteCookiesAndShowForm();
+            },
+            false
+          );
+          a.appendChild(link);
+          h1.style.display = "block";
+          h1.innerHTML = "Welcome: " + Cookies.get("firstname");
+          h1.appendChild(a);
+          document.body.appendChild(h1);
+          hideForm();
+        }
+      }
+    </script>
+  </body>
+</html>
