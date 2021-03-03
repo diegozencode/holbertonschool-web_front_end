@@ -29,9 +29,23 @@
         sessionStorage.setItem(item, true);
       }
 
+      function removeItemFromCart(item) {
+        // remove item form the cart
+        // Store value of the cart object in a string for the key cart in the session storage
+        displayCart();
+      }
+
+      function clearCart() {
+        // clear the entire session
+        displayCart();
+      }
+
       function createStore() {
+        // Create title
+        let h2 = document.createElement("h2");
         // create unnordered list and append it to the DOM
         let list = document.createElement("ul");
+        h2.appendChild(document.createTextNode("Available products:"));
         // create list item
         availableItems.forEach((element) => {
           let item = document.createElement("li");
@@ -42,13 +56,17 @@
             addItemToCart(element);
           };
         });
-
+        document.body.appendChild(h2);
         document.body.appendChild(list);
       }
 
       function displayCart() {
-        // create para p element
+        // Create title
+        let h2 = document.createElement("h2");
+        // create p element
         let paragraph = document.createElement("p");
+        h2.appendChild(document.createTextNode("Your cart:"));
+        document.body.appendChild(h2);
         if (sessionStorage.length > 0) {
           paragraph.appendChild(
             document.createTextNode(
@@ -59,6 +77,14 @@
           );
           document.body.appendChild(paragraph);
         }
+      }
+
+      function updateCart() {
+        // add list to the div
+        // if the cart is empty it should add an item "Your cart is empty"
+        // format item_name x quatity (remove)
+        // remove item form cart if clicked
+        // add item
       }
     </script>
   </body>
